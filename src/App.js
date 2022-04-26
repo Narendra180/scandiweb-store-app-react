@@ -1,23 +1,45 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import { gql, useQuery } from '@apollo/client';
+import NavBar from './components/navbar/navbar.component';
 import './App.css';
 
+const GET_CATEGORY_NAMES = gql`
+    query {
+        categories {
+            name
+        }
+    }
+`;
+
 function App() {
+
+  const [currentActiveCategory, setCurrentActiveCategory] = useState("");
+
+  const onGettingCategories = (data) => {
+    setCurrentActiveCategory(data.categories[0]);
+  }
+
+  const { loading, error, data } = useQuery(GET_CATEGORY_NAMES, 
+                                    {onCompleted : onGettingCategories}
+                                   );
+
+
+  useEffect(() => {
+    // console.log(currentActiveCategory)
+  });
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <NavBar 
+        categories={data.categories}
+        currentActiveCategory={currentActiveCategory}
+        setCurrentActiveCategory={setCurrentActiveCategory}
+      />
+
     </div>
   );
 }
