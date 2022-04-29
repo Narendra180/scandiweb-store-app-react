@@ -26,7 +26,7 @@
         }
 
         .category:active {
-            background-color: rgb(247, 247, 247);
+            background-color: rgb(235, 235, 235);
         }
 
         .active-category {
@@ -48,18 +48,21 @@
     }
 
     .navbar-logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         position: absolute;
-        width: 100%;
-        height: 100%;
         top: 0;
-        left: 0;
-        z-index: -1;
+        bottom: 0;
+        left: calc(50% - 25px);
+        display: flex;
+        align-items: center;
+
         .navbar-logo-svg {
             width: 50px;
             height: 50px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: red;
+            }
         }
     }
 
