@@ -9,7 +9,7 @@ import {
   ApolloProvider,
 } from "@apollo/client";
 
-const client = new ApolloClient({
+export const apolloClient = new ApolloClient({
   uri: 'http://localhost:4000/',
   cache: new InMemoryCache()
 });
@@ -18,7 +18,7 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <App />
     </ApolloProvider>
   </React.StrictMode>

@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import React from 'react';
 import NavBar from './components/navbar/navbar.component';
+import { gql } from '@apollo/client';
+import { apolloClient } from './index';
 import './App.css';
 
 const GET_CATEGORY_NAMES = gql`
@@ -11,37 +12,102 @@ const GET_CATEGORY_NAMES = gql`
     }
 `;
 
-function App() {
+class App extends React.Component {
+    constructor(props) {
+        super(props);
 
-  const [currentActiveCategory, setCurrentActiveCategory] = useState("");
+        this.state = {
+            categories: [],
+            isCategoriesLoading: true,
+            isLoadingCategoriesFailed: false,
+            currentActiveCategory: ""
+        }
+    }
 
-  const onGettingCategories = (data) => {
-    setCurrentActiveCategory(data.categories[0]);
-  }
+    componentDidMount() {
+        this.getCategories();
+    }
 
-  const { loading, error, data } = useQuery(GET_CATEGORY_NAMES, 
-                                    {onCompleted : onGettingCategories}
-                                   );
+    getCategories = async () => {
+        try {   
+            const { data: { categories } } = await apolloClient.query({
+                            query: GET_CATEGORY_NAMES
+                        });
 
+            this.setState({
+                categories: categories,
+                isCategoriesLoading: false,
+                isLoadingCategoriesFailed: false,
+                currentActiveCategory: categories[0]
+            });
+        } catch(err) {
+            this.setState({isLoadingCategoriesFailed: true})
+            console.log(err);
+        }
+    }
 
-  useEffect(() => {
-    // console.log(currentActiveCategory)
-  });
+    setCurrentActiveCategory = (category) => {
+        this.setState({currentActiveCategory: category});
+    }
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+    render() {
+        if(this.state.isLoadingCategoriesFailed) {
+            return `Something went wrong, please try again later`;
+        }
+        return (
+            <div className="App">
 
-  return (
-    <div className="App">
-      
-      <NavBar 
-        categories={data.categories}
-        currentActiveCategory={currentActiveCategory}
-        setCurrentActiveCategory={setCurrentActiveCategory}
-      />
+                {
+                    this.state.isCategoriesLoading
+                    ?
+                    <p>Loading...</p>
+                    :
+                    <NavBar
+                        categories={this.state.categories}
+                        currentActiveCategory={this.state.currentActiveCategory}
+                        setCurrentActiveCategory={this.setCurrentActiveCategory}
+                    />
+                }
 
-    </div>
-  );
+            </div>
+        );
+    }
 }
 
 export default App;
+
+
+// function App() {
+
+//     const [currentActiveCategory, setCurrentActiveCategory] = useState("");
+
+//     const onGettingCategories = (data) => {
+//         setCurrentActiveCategory(data.categories[0]);
+//     }
+
+//     const { loading, error, data } = useQuery(GET_CATEGORY_NAMES,
+//         { onCompleted: onGettingCategories }
+//     );
+
+
+//     useEffect(() => {
+//         // console.log(currentActiveCategory)
+//     });
+
+//     if (loading) return 'Loading...';
+//     if (error) return `Error! ${error.message}`;
+
+//     return (
+//         <div className="App">
+
+//             <NavBar
+//                 categories={data.categories}
+//                 currentActiveCategory={currentActiveCategory}
+//                 setCurrentActiveCategory={setCurrentActiveCategory}
+//             />
+
+//         </div>
+//     );
+// }
+
+// export default App;
