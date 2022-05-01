@@ -1,7 +1,7 @@
 import React from "react";
 import { gql } from '@apollo/client';
 import { apolloClient } from '../../index';
-import ProductCard from "../product-card/product-card.component";
+import ProductCard from "../../components/product-card/product-card.component";
 import "./product-cards-list.styles.scss";
 
 const getProductsOf = (categoryName) => {

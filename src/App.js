@@ -2,7 +2,8 @@ import React from 'react';
 import NavBar from './components/navbar/navbar.component';
 import { gql } from '@apollo/client';
 import { apolloClient } from './index';
-import ProductCardsList from './components/product-cards-list/product-cards-list.component';
+import ProductCardsList from './pages/product-cards-list/product-cards-list.component';
+import ProductDescription from './pages/product-description/product-description.component';
 import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
 
@@ -27,8 +28,14 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        console.log("component mounted");
         this.getCategories();
     }
+
+    componentWillUnmount() {
+        console.log("component unmounted");
+    }
+
 
     getCategories = async () => {
         try {   
@@ -71,6 +78,10 @@ class App extends React.Component {
                             setCurrentActiveCategory={this.setCurrentActiveCategory}
                         />
 
+                        {/* <ProductCardsList 
+                            categoryName={this.state.currentActiveCategory.name}
+                        /> */}
+
                         <Routes>
                             <Route 
                                 path="/" 
@@ -79,6 +90,20 @@ class App extends React.Component {
                                         categoryName={this.state.currentActiveCategory.name}
                                     />
                                 } 
+                            />
+
+                            <Route 
+                                path="/pdp/:productId"
+                                element={<ProductDescription />}
+                            />
+
+                            <Route
+                                path="*"
+                                element={
+                                    <main style={{ padding: "1rem" }}>
+                                    <p>There's nothing here!</p>
+                                    </main>
+                                }
                             />
                         </Routes>
 

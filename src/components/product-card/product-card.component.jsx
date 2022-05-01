@@ -1,15 +1,24 @@
 import React from "react";
 import { ReactComponent as CartIcon } from '../../images/cart-icon.svg';
+import withRouter from "../../hoc-components/with-router";
 import "./product-card.styles.scss";
 
 
 class ProductCard extends React.Component {
 
+    navigateToProductDescription = (id) => {
+        
+        return (e) => {
+            this.props.router.navigate(`/pdp/${id}`);
+        }
+    }
+
     render() {
-        const {gallery,name,prices} = this.props.product;
+        const {gallery,name,prices,id} = this.props.product;
         return (
             <div
                 className="product-card"
+                onClick={this.navigateToProductDescription(id)}
             >                
                 <div
                     className="product-img-div"
@@ -29,4 +38,4 @@ class ProductCard extends React.Component {
     }
 }
 
-export default ProductCard;
+export default withRouter(ProductCard);
