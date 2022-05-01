@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { ReactComponent as Logo } from '../../images/store-logo.svg';
 import { ReactComponent as CaronIcon } from '../../images/caron-symbol.svg';
 import { ReactComponent as CartIcon } from '../../images/cart-icon.svg';
+import { Link } from "react-router-dom";
 import "./navbar.styles.scss";
 
 
@@ -66,7 +67,9 @@ class NavBar extends React.Component {
                 <div
                     className='navbar-logo'
                 >
-                    <Logo className="navbar-logo-svg"/>
+                    <Link to="/">
+                        <Logo className="navbar-logo-svg"/>
+                    </Link>
                 </div>
 
                 <div

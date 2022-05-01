@@ -2,6 +2,8 @@ import React from 'react';
 import NavBar from './components/navbar/navbar.component';
 import { gql } from '@apollo/client';
 import { apolloClient } from './index';
+import ProductCardsList from './components/product-cards-list/product-cards-list.component';
+import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
 
 const GET_CATEGORY_NAMES = gql`
@@ -62,11 +64,28 @@ class App extends React.Component {
                     ?
                     <p>Loading...</p>
                     :
-                    <NavBar
-                        categories={this.state.categories}
-                        currentActiveCategory={this.state.currentActiveCategory}
-                        setCurrentActiveCategory={this.setCurrentActiveCategory}
-                    />
+                    <>
+                        <NavBar
+                            categories={this.state.categories}
+                            currentActiveCategory={this.state.currentActiveCategory}
+                            setCurrentActiveCategory={this.setCurrentActiveCategory}
+                        />
+
+                        <Routes>
+                            <Route 
+                                path="/" 
+                                element={
+                                    <ProductCardsList 
+                                        categoryName={this.state.currentActiveCategory.name}
+                                    />
+                                } 
+                            />
+                        </Routes>
+
+                        
+
+                    </>
+                    
                 }
 
             </div>
