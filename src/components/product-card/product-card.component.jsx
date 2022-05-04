@@ -17,22 +17,26 @@ class ProductCard extends React.Component {
         const {gallery,name,prices,id} = this.props.product;
         return (
             <div
-                className="product-card"
+                className="product-card-container"
                 onClick={this.navigateToProductDescription(id)}
-            >                
+            >          
                 <div
-                    className="product-img-div"
-                    style={{backgroundImage: `url(${gallery[0]})`}}
+                    className="product-card"
                 >
-                    {/* <img className="product-img" src={gallery[0]} alt={name + " product"}/> */}
-                    <button
-                        className="add-to-cart-btn"
+                    <div
+                        className="product-img-div"
+                        style={{backgroundImage: `url(${gallery[0]})`}}
                     >
-                        <CartIcon />
-                    </button>
-                </div>
-                <p className="product-name-p pc-p">{name}</p>
-                <p className="product-price-p pc-p">{prices[0].currency.symbol}{prices[0].amount}</p>                
+                        {/* <img className="product-img" src={gallery[0]} alt={name + " product"}/> */}
+                        <button
+                            className="add-to-cart-btn"
+                        >
+                            <CartIcon />
+                        </button>
+                    </div>
+                    <p className="product-name-p pc-p">{name}</p>
+                    <p className="product-price-p pc-p">{prices[0].currency.symbol}{prices[0].amount}</p>                                
+                </div>                      
             </div>
         );
     }

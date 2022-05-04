@@ -3,7 +3,7 @@ import NavBar from './components/navbar/navbar.component';
 import { gql } from '@apollo/client';
 import { apolloClient } from './index';
 import ProductCardsList from './pages/product-cards-list/product-cards-list.component';
-import ProductDescription from './pages/product-description/product-description.component';
+import ProductDescription from './pages/product-description-page/product-description-page.component';
 import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
 
