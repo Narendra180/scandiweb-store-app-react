@@ -1,0 +1,90 @@
+.product-details {
+    // background-color: green;
+    padding-top: 10px;
+    margin-left: 20px;
+    flex: 1 0 0;
+    display: flex;
+
+    .product-description-attributes-add-to-cart-container {
+        text-align: left;
+        padding: 10px;
+        // background-color: rgb(212, 212, 212);
+        margin-left: 30px;
+
+        h1.brand-name {
+            font-family: Raleway, sans-serif;
+            font-weight: 600;
+            font-size: 2.25rem;
+            text-align: left;
+            margin: 0 0 10px 0;
+        }
+
+        h2.product-name {
+            font-family: Raleway, sans-serif;
+            font-weight: 400;
+            font-size: 2rem;
+            text-align: left;
+            margin: 0 0 30px 0;
+        }
+
+        .price-attribute-container {
+            margin: 0 0 25px 0;
+
+            h3.attribute-name {
+                text-transform: uppercase;
+                font-family: "Roboto Condensed", sans-serif;
+                font-weight: 700;
+                text-align: left;
+                margin: 0 0 10px 0;
+            }
+    
+            .attribute-value {
+                text-align: left;
+                font-family: Raleway, sans-serif;
+                font-weight: 700;
+            }    
+        }
+
+        .addtocart-btn {
+            border: 0;
+            text-transform: uppercase;
+            font-family: Raleway, sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: white;
+            background-color: #5ECE7B;
+            padding: 14px 60px;
+            margin: 0 0 25px 0;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .product-description-text-container {
+            max-width: 70%;
+            font-family: Roboto, sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            p,ul,h1 {
+                margin: 0;
+            }
+
+            ul {
+                padding-left: 15px;
+            }
+
+            p,li {
+                margin-bottom: 14px;
+            }
+
+            h1,h2,h3,h4,h5,h6 {
+                margin: 0;
+                margin-bottom: 10px;
+                font-size: 1.1rem;
+                font-weight: 500;
+            }
+        }
+    }
+
+}
