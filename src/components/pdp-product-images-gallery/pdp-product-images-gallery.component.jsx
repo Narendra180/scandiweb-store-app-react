@@ -2,6 +2,12 @@ import React from "react";
 import "./pdp-product-images-gallery.styles.scss";
 
 class PdpProductImagesGallery extends React.Component {
+
+    changeBigGalleryImage = (e) => {
+        // console.log(e.target.src);
+        this.props.changeActiveBigGalleryImage(e.target.src);
+    }
+
     render() {
         return (
             <div
@@ -17,6 +23,7 @@ class PdpProductImagesGallery extends React.Component {
                                 <div
                                     className="gallery-clickable-small-img-container"
                                     key={i}
+                                    onClick={this.changeBigGalleryImage}
                                 >
                                     <img 
                                         src={imgLink}

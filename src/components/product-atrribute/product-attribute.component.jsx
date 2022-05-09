@@ -3,7 +3,24 @@ import "./product-attribute.styles.scss";
 
 
 class ProductAttribute extends React.Component {
+
+    // constructor(props) {
+    //     super(props);
+
+    //     this.state = {
+
+    //     }
+    // }
+
+    onAttributeValueClick = (obj) => {
+        return (e) => {
+            // console.log(obj,e);
+            this.props.onChange(obj);
+        }
+    }
+
     render() {
+        console.log(this.props,"paac");
         return (
             <div
                 className="attribute-selector-container"
@@ -22,7 +39,10 @@ class ProductAttribute extends React.Component {
                                 return (
                                     <div
                                         key={i}
-                                        className={`attribute-value`}
+                                        className={`attribute-value ${
+                                            (this.props.value === itemObject.value)?
+                                            "selected-value":""
+                                            }`}
                                         style={
                                             this.props.attributeObject.type !== "swatch"?{}:
                                             {
@@ -31,13 +51,17 @@ class ProductAttribute extends React.Component {
                                                 height: "30px"
                                             }
                                         }
+                                        onClick={this.onAttributeValueClick({
+                                            name: this.props.attributeObject.name, 
+                                            value: itemObject.value
+                                        })}
                                     >
                                         {
                                             this.props.attributeObject.type !== "swatch"
                                             ?
                                             itemObject.value
                                             :
-                                            ""
+                                            <div className="sw-div"></div>
                                         }
                                     </div>
                                 )

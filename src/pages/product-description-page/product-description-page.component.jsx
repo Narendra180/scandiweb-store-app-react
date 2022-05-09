@@ -6,6 +6,7 @@ import PdpProductImagesGallery from "../../components/pdp-product-images-gallery
 import PdpProductDetails from "../../components/pdp-product-details/pdp-product-details.component";
 import "./product-description-page.styles.scss";
 
+
 // productId comes from params.
 const getProductDetailsOf = (productId) => {
     const GET_PRODUCT_DETAILS = gql`
@@ -56,6 +57,7 @@ class ProductDescription extends React.Component {
 
     componentDidMount() {
         this.getProductDetails();
+        // console.log(this.props)
     }
 
     getProductDetails = async () => {
@@ -77,6 +79,10 @@ class ProductDescription extends React.Component {
         }
     }
 
+    changeActiveBigGalleryImage = (imgLink) => {
+        this.setState({activeGalleryImageLink: imgLink});
+    }
+
     render() {
 
         if(this.state.isLoadingProductObjectFailed) {
@@ -96,13 +102,16 @@ class ProductDescription extends React.Component {
                     >                        
                         <PdpProductImagesGallery
                             activeGalleryImageLink={this.state.activeGalleryImageLink}
+                            changeActiveBigGalleryImage={this.changeActiveBigGalleryImage}
                             product={this.state.product}                            
                         />
 
                         <PdpProductDetails 
                             product={this.state.product}
                         />
+
                     </div>
+                    
                 }
             </div>
         )

@@ -11,10 +11,21 @@
     .attributes-container {
         display: flex;
 
+        .attribute-value:hover {
+            cursor: pointer;
+        }
+
         &.swatch-attr {
             .attribute-value {
                 margin-right: 10px;
             }
+
+            .attribute-value.selected-value {
+                // border: 1px solid #5ECE7B;
+                outline: 1px solid #5ECE7B;
+                outline-offset: 2px;
+            }
+
         }
 
         &.text-attr {
@@ -24,6 +35,11 @@
                 border: 1px solid #1D1F22;
                 margin-right: 10px;
                 padding: 10px 20px;
+
+                &.selected-value {
+                    background-color: #1D1F22;
+                    color: white;
+                }
             }
         }
     }

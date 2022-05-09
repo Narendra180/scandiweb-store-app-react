@@ -1,11 +1,37 @@
 import React from "react";
 import ProductAttribute from "../product-atrribute/product-attribute.component";
-
+import { addToCart } from "../../redux/redux-slices/cart-slice";
+import withRedux from "../../hoc-components/withRedux";
 import "./pdp-product-details.styles.scss";
 
 
 class PdpProductDetails extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        // we will have selected attribute values in this state.
+        this.state = {}
+    }
+
+    componentDidMount() {
+        let initialSelectedAttributes = {};
+        this.props.product.attributes.forEach((attributeObject,i) => {
+            initialSelectedAttributes[attributeObject.name] = attributeObject.items[0].value;
+        })
+        this.setState(initialSelectedAttributes);
+    }
+
+    addProductToCart = () => {
+        this.props.redux.dispatch(addToCart(this.props.product));
+    }
+
+    onProductAttributesSelectionChange = ({name,value}) => {
+        this.setState({[name]: value});
+    }
+
     render() {
+        console.log(this.props,this.state)
         return (
             <div
                 className="product-details"
@@ -22,6 +48,8 @@ class PdpProductDetails extends React.Component {
                                 <ProductAttribute
                                     key={i}
                                     attributeObject={attributeObject}
+                                    onChange={this.onProductAttributesSelectionChange}
+                                    value={this.state[attributeObject.name]}
                                 />
                             )
                         })
@@ -42,6 +70,7 @@ class PdpProductDetails extends React.Component {
 
                     <button
                         className="addtocart-btn"
+                        onClick={this.addProductToCart}
                     >
                         Add To Cart
                     </button>          
@@ -66,4 +95,4 @@ class PdpProductDetails extends React.Component {
     }
 }
 
-export default PdpProductDetails;
+export default withRedux(PdpProductDetails);
