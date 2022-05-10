@@ -70,6 +70,10 @@
         }
     }
 
+    .out-of-stock-div {
+        display: none;
+    }
+
     // .product-img-div {
     //     height: 200px;
     //     width: 200px;
@@ -81,4 +85,26 @@
     //     }
     // }
     
+}
+
+.product-card.out-of-stock {
+    .out-of-stock-div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(240, 240, 240);
+        opacity: 0.4;
+
+        .oos-p {
+            font-family: Raleway, sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+    }
 }

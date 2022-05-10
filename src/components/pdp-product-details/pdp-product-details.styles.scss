@@ -59,6 +59,10 @@
             &:hover {
                 cursor: pointer;
             }
+
+            &:disabled {
+                background-color: rgb(179, 179, 179);
+            }
         }
 
         .product-description-text-container {

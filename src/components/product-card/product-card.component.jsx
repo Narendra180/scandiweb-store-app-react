@@ -13,15 +13,20 @@ class ProductCard extends React.Component {
         }
     }
 
+    handleAddToCartIconClick = (e) => {
+        e.stopPropagation();
+        console.log("clicked");
+    }
+
     render() {
-        const {gallery,name,prices,id} = this.props.product;
+        const {gallery,name,prices,id,inStock} = this.props.product;
         return (
             <div
                 className="product-card-container"
                 onClick={this.navigateToProductDescription(id)}
             >          
                 <div
-                    className="product-card"
+                    className={`product-card ${!inStock?" out-of-stock":""}`}
                 >
                     <div
                         className="product-img-div"
@@ -30,12 +35,18 @@ class ProductCard extends React.Component {
                         {/* <img className="product-img" src={gallery[0]} alt={name + " product"}/> */}
                         <button
                             className="add-to-cart-btn"
+                            onClick={this.handleAddToCartIconClick}
                         >
                             <CartIcon />
                         </button>
                     </div>
                     <p className="product-name-p pc-p">{name}</p>
                     <p className="product-price-p pc-p">{prices[0].currency.symbol}{prices[0].amount}</p>                                
+
+
+                    <div className="out-of-stock-div">
+                        <p className="oos-p">out of stock</p>
+                    </div>
                 </div>                      
             </div>
         );

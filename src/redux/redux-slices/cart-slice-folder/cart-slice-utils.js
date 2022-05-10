@@ -17,7 +17,6 @@ const checkIfObjectsAreSame = (object1,object2) => {
     return result;
 }
 
-checkIfObjectsAreSame({Size:"40"},{Size:"40"})
 
 export const isProductWithSameAttributesPresent = (productsArray,productToBeAdded) => {
     let result = false;

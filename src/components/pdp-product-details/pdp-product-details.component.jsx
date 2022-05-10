@@ -77,6 +77,7 @@ class PdpProductDetails extends React.Component {
                     <button
                         className="addtocart-btn"
                         onClick={this.addProductToCart}
+                        disabled={!this.props.product.inStock}
                     >
                         Add To Cart
                     </button>          

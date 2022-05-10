@@ -15,6 +15,7 @@ const getProductDetailsOf = (productId) => {
                                         id,
                                         brand,
                                         name,
+                                        inStock,
                                         description,
                                         prices {
                                             currency {
