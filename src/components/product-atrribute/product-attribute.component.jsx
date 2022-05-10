@@ -20,7 +20,7 @@ class ProductAttribute extends React.Component {
     }
 
     render() {
-        console.log(this.props,"paac");
+        // console.log(this.props,"paac");
         return (
             <div
                 className="attribute-selector-container"

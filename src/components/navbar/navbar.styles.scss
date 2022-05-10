@@ -77,7 +77,6 @@
         align-items: center;
         font-family: Raleway, sans-serif;
         font-weight: 500;
-        font-size: 18px;
 
         .currency-switcher {
             margin-right: 20px;
@@ -85,6 +84,7 @@
             .currency-symbol {
                 display: inline-block;
                 margin-right: 7px;
+                font-size: 1.5rem;
             }
             .caron-svg {
                 width: 16px;
@@ -102,10 +102,40 @@
         }
 
         .cart-icon {
+            position: relative;
+
             .cart-icon-svg {
-                width: 28px;
-                height: 28px;
+                width: 30px;
+                height: 30px;
             }
+
+            .cart-quantity-indicator {
+                font-family: Roboto;
+                font-weight: 700;
+                font-size: 12px;
+                position: absolute;
+                background-color: #1D1F22;
+                color: white;
+                top: -5px;
+                right: -9px;
+                width: 20px;
+                height: 20px;
+                line-height: 21px;
+                border-radius: 50%;
+
+                &.cart-quantity-indicator-two-digit {
+                    top: -10px;
+                    right: -12px;
+                    width: 25px;
+                    height: 25px;
+                    line-height: 26px;
+                }
+
+                &.hide-cart-quantity-indicator {
+                    display: none;
+                }
+            }
+
             &:hover {
                 cursor: pointer;
             }

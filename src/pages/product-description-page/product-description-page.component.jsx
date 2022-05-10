@@ -12,6 +12,7 @@ const getProductDetailsOf = (productId) => {
     const GET_PRODUCT_DETAILS = gql`
                                     query {
                                         product(id: "${productId}") {
+                                        id,
                                         brand,
                                         name,
                                         description,

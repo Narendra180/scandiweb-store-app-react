@@ -1,6 +1,6 @@
 import React from "react";
 import ProductAttribute from "../product-atrribute/product-attribute.component";
-import { addToCart } from "../../redux/redux-slices/cart-slice";
+import { addToCart } from "../../redux/redux-slices/cart-slice-folder/cart-slice";
 import withRedux from "../../hoc-components/withRedux";
 import "./pdp-product-details.styles.scss";
 
@@ -23,7 +23,13 @@ class PdpProductDetails extends React.Component {
     }
 
     addProductToCart = () => {
-        this.props.redux.dispatch(addToCart(this.props.product));
+        // console.log(this.props.product);
+        const {id,name,brand,prices} = this.props.product;
+        const productObject = {
+            id,name,brand,prices,
+            attributes: this.state,
+        }
+        this.props.redux.dispatch(addToCart(productObject));
     }
 
     onProductAttributesSelectionChange = ({name,value}) => {
@@ -31,7 +37,7 @@ class PdpProductDetails extends React.Component {
     }
 
     render() {
-        console.log(this.props,this.state)
+        // console.log(this.props,this.state)
         return (
             <div
                 className="product-details"

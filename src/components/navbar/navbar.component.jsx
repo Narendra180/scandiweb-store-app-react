@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ReactComponent as Logo } from '../../images/store-logo.svg';
 import { ReactComponent as CaronIcon } from '../../images/caron-symbol.svg';
 import { ReactComponent as CartIcon } from '../../images/cart-icon.svg';
+import withRedux from '../../hoc-components/withRedux';
+import { selectTotalQuantity } from '../../redux/redux-slices/cart-slice-folder/cart-slice';
 import { Link } from "react-router-dom";
 import "./navbar.styles.scss";
 
@@ -29,6 +31,7 @@ class NavBar extends React.Component {
     }
 
     render() {
+        console.log("re rendered");
         return (
             <div
                 className="navbar"
@@ -81,6 +84,15 @@ class NavBar extends React.Component {
                     </div>
                     <div className="cart-icon">
                         <CartIcon className="cart-icon-svg"/>
+                        <span className={`cart-quantity-indicator ${
+                            this.props.redux.selectedStateValue < 1?
+                            "hide-cart-quantity-indicator":""
+                        }${
+                            this.props.redux.selectedStateValue > 9?
+                            "cart-quantity-indicator-two-digit":""
+                        }`}>
+                            {this.props.redux.selectedStateValue}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -88,7 +100,7 @@ class NavBar extends React.Component {
     }
 }
 
-export default NavBar;
+export default withRedux(NavBar,selectTotalQuantity);
 
 // const NavBar = ({categories,currentActiveCategory, setCurrentActiveCategory}) => {
 
