@@ -1,18 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isProductWithSameAttributesPresent } from './cart-slice-utils';
 
-// [{
-//     id: "",
-//     brandName: "",
-//     productName: "",
-//     prices: [],
-//     attributes: [
-
-//     ],
-//     quantity: 1
-// }]
-
-
 export const cartSlice = createSlice({
     name: 'counter',
     initialState: {
