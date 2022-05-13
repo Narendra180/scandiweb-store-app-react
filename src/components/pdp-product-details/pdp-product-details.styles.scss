@@ -63,6 +63,10 @@
             &:disabled {
                 background-color: rgb(179, 179, 179);
             }
+
+            &:disabled:hover {
+                cursor: not-allowed;
+            }
         }
 
         .product-description-text-container {

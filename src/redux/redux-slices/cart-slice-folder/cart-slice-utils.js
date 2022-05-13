@@ -22,7 +22,7 @@ export const isProductWithSameAttributesPresent = (productsArray,productToBeAdde
     let result = false;
     let foundProductObject = {};
     productsArray.forEach((productObject,i) => {
-        if(checkIfObjectsAreSame(productObject.attributes,productToBeAdded.attributes)) {
+        if(checkIfObjectsAreSame(productObject.selectedAttributes,productToBeAdded.selectedAttributes)) {
             // console.log(current(attributes),productToBeAdded.attributes)
             result = true;
             foundProductObject = productObject;

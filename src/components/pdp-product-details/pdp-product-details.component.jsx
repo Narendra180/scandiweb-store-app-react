@@ -13,6 +13,7 @@ class PdpProductDetails extends React.Component {
 
         // we will have selected attribute values in this state.
         this.state = {}
+
     }
 
     componentDidMount() {
@@ -28,7 +29,8 @@ class PdpProductDetails extends React.Component {
         const {id,name,brand,prices} = this.props.product;
         const productObject = {
             id,name,brand,prices,
-            attributes: this.state,
+            selectedAttributes: this.state,
+            allProductAttributes: this.props.product.attributes
         }
         this.props.redux.dispatch(addToCart(productObject));
     }

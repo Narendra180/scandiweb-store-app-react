@@ -12,28 +12,28 @@ const getProductDetailsOf = (productId) => {
     const GET_PRODUCT_DETAILS = gql`
                                     query {
                                         product(id: "${productId}") {
-                                        id,
-                                        brand,
-                                        name,
-                                        inStock,
-                                        description,
-                                        prices {
-                                            currency {
-                                            label,
-                                            symbol
-                                          },
-                                            amount
-                                        },
-                                        gallery,
-                                        attributes {
+                                            id,
+                                            brand,
                                             name,
-                                            type,
-                                            items {
-                                            displayValue,
-                                            value,
-                                            id
+                                            inStock,
+                                            description,
+                                            prices {
+                                                currency {
+                                                    label,
+                                                    symbol
+                                                },
+                                                amount
+                                            },
+                                            gallery,
+                                            attributes {
+                                                name,
+                                                type,
+                                                items {
+                                                    displayValue,
+                                                    value,
+                                                    id
+                                                }
                                             }
-                                        }
                                         }
                                     }
                                     `;

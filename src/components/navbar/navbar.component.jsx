@@ -53,6 +53,7 @@ class NavBar extends React.Component {
     handleCurrencySelectorChange = ({target: {dataset: {symbol,label}}}) => {
         // console.log({label,symbol})
         this.props.redux.dispatch(changeCurrentActiveCurrency({label,symbol}));
+        this.setState({isCurrencySelectorOpen:false});
     }
 
     render() {

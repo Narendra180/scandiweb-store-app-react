@@ -8,20 +8,30 @@ const getProductsOf = (categoryName) => {
     const GET_PRODUCTS_OF_CATEGORY = gql`
                                     query {
                                         category(input: {title: "${categoryName}"}) {
-                                        name,
-                                        products {
-                                            id,
                                             name,
-                                            inStock,
-                                            gallery,
-                                            prices {
-                                            currency {
-                                                label,
-                                                symbol
-                                            },
-                                            amount
+                                            products {
+                                                id,
+                                                brand,
+                                                name,
+                                                inStock,
+                                                prices {
+                                                    currency {
+                                                        label,
+                                                        symbol
+                                                    },
+                                                    amount
+                                                },
+                                                gallery,
+                                                attributes {
+                                                    name,
+                                                    type,
+                                                    items {
+                                                        displayValue,
+                                                        value,
+                                                        id
+                                                    }
+                                                }
                                             }
-                                        }
                                         }
                                     }
                                     `;

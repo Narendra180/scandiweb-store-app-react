@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isProductWithSameAttributesPresent } from './cart-slice-utils';
+import { current } from '@reduxjs/toolkit';
+
 
 export const cartSlice = createSlice({
     name: 'counter',

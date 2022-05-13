@@ -1,5 +1,7 @@
 import React from "react";
 import { ReactComponent as CartIcon } from '../../images/cart-icon.svg';
+import { addToCart } from "../../redux/redux-slices/cart-slice-folder/cart-slice";
+import withRedux from "../../hoc-components/withRedux";
 import withRouter from "../../hoc-components/with-router";
 import Price from "../price/price.component";
 import "./product-card.styles.scss";
@@ -14,13 +16,28 @@ class ProductCard extends React.Component {
         }
     }
 
+    addProductToCart = () => {
+        let initialSelectedAttributes = {};
+        this.props.product.attributes.forEach((attributeObject,i) => {
+            initialSelectedAttributes[attributeObject.name] = attributeObject.items[0].value;
+        })
+        const {id,name,brand,prices} = this.props.product;
+        const productObject = {
+            id,name,brand,prices,
+            selectedAttributes: initialSelectedAttributes,
+            allProductAttributes: this.props.product.attributes
+        }
+
+        this.props.redux.dispatch(addToCart(productObject));
+    }
+
     handleAddToCartIconClick = (e) => {
         e.stopPropagation();
-        console.log("clicked");
+        this.addProductToCart();
     }
 
     render() {
-        const {gallery,name,prices,id,inStock} = this.props.product;
+        const {gallery,name,brand,prices,id,inStock} = this.props.product;
         return (
             <div
                 className="product-card-container"
@@ -41,7 +58,7 @@ class ProductCard extends React.Component {
                             <CartIcon />
                         </button>
                     </div>
-                    <p className="product-name-p pc-p">{name}</p>
+                    <p className="product-name-p pc-p">{brand} {name}</p>
                     <p className="product-price-p pc-p">
                         <Price 
                             prices={prices}
@@ -58,4 +75,4 @@ class ProductCard extends React.Component {
     }
 }
 
-export default withRouter(ProductCard);
+export default withRedux(withRouter(ProductCard));

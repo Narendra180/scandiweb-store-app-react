@@ -15,7 +15,9 @@ class ProductAttribute extends React.Component {
     onAttributeValueClick = (obj) => {
         return (e) => {
             // console.log(obj,e);
-            this.props.onChange(obj);
+            if(this.props.onChange) {
+                this.props.onChange(obj);
+            }
         }
     }
 
