@@ -34,8 +34,15 @@ export const cartSlice = createSlice({
 export const { addToCart } = cartSlice.actions;
 
 // Here state means we will get complete store state object not only cart object.
-export const selectTotalQuantity = (state) => {
-    return state.cart.totalQuantity
+// export const selectTotalQuantity = (state) => {
+//     return state.cart.totalQuantity
+// };
+
+export const selectToatalQuantityCurrentActiveCurrency = (state) => {
+    return {
+        totalQuantity: state.cart.totalQuantity,
+        currentActiveCurrency: state.currency.currentActiveCurrency
+    }
 };
 
 export default cartSlice.reducer;

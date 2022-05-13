@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactComponent as CartIcon } from '../../images/cart-icon.svg';
 import withRouter from "../../hoc-components/with-router";
+import Price from "../price/price.component";
 import "./product-card.styles.scss";
 
 
@@ -41,7 +42,11 @@ class ProductCard extends React.Component {
                         </button>
                     </div>
                     <p className="product-name-p pc-p">{name}</p>
-                    <p className="product-price-p pc-p">{prices[0].currency.symbol}{prices[0].amount}</p>                                
+                    <p className="product-price-p pc-p">
+                        <Price 
+                            prices={prices}
+                        />
+                    </p>                                
 
 
                     <div className="out-of-stock-div">

@@ -1,6 +1,7 @@
 import React from "react";
 import ProductAttribute from "../product-atrribute/product-attribute.component";
 import { addToCart } from "../../redux/redux-slices/cart-slice-folder/cart-slice";
+import Price from "../price/price.component";
 import withRedux from "../../hoc-components/withRedux";
 import "./pdp-product-details.styles.scss";
 
@@ -68,9 +69,14 @@ class PdpProductDetails extends React.Component {
                         <div
                             className="attribute-value"
                         >
-                            {
+                            {/* {
                                 this.props.product.prices[0].currency.symbol+this.props.product.prices[0].amount
-                            }
+                            } */}
+                            <p>
+                                <Price 
+                                    prices={this.props.product.prices}
+                                />
+                            </p>                        
                         </div>
                     </div>    
 

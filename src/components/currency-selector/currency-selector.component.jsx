@@ -36,6 +36,10 @@ class CurrencySelector extends React.Component {
         this.getAvailableCurrencies();
     }
 
+    componentDidUpdate() {
+        // console.log(this.props.value)
+    }
+
 
     getAvailableCurrencies = async () => {
         try {
@@ -78,7 +82,11 @@ class CurrencySelector extends React.Component {
                                     <p
                                         data-id="list-item-p"
                                         key={currencyObject.symbol}
-                                        className="currency-p-list-item"
+                                        data-label={currencyObject.label}
+                                        data-symbol={currencyObject.symbol}
+                                        className={
+                                            `currency-p-list-item ${currencyObject.label===this.props.value.label?"selected":""}`
+                                        }
                                     >
                                         {currencyObject.symbol} {currencyObject.label}
                                     </p>

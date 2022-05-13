@@ -4,7 +4,8 @@ import { ReactComponent as CaronIcon } from '../../images/caron-symbol.svg';
 import { ReactComponent as CartIcon } from '../../images/cart-icon.svg';
 import CurrencySelector from '../currency-selector/currency-selector.component';
 import withRedux from '../../hoc-components/withRedux';
-// import { selectTotalQuantity } from '../../redux/redux-slices/cart-slice-folder/cart-slice';
+import { selectToatalQuantityCurrentActiveCurrency } from '../../redux/redux-slices/cart-slice-folder/cart-slice';
+import { changeCurrentActiveCurrency } from '../../redux/redux-slices/currency-slice-folder/currency-slice';
 import { Link } from "react-router-dom";
 import "./navbar.styles.scss";
 
@@ -49,8 +50,9 @@ class NavBar extends React.Component {
         this.setState({isCurrencySelectorOpen:false});
     }
 
-    handleCurrencySelectorChange = (e) => {
-        console.log(e.target)
+    handleCurrencySelectorChange = ({target: {dataset: {symbol,label}}}) => {
+        // console.log({label,symbol})
+        this.props.redux.dispatch(changeCurrentActiveCurrency({label,symbol}));
     }
 
     render() {
@@ -114,6 +116,7 @@ class NavBar extends React.Component {
                         <CurrencySelector
                             isOpen={this.state.isCurrencySelectorOpen}
                             onChange={this.handleCurrencySelectorChange}
+                            value={this.props.redux.selectedStateValue.currentActiveCurrency}
                         />
                     </div>
                     <div className="cart-icon">
@@ -134,14 +137,7 @@ class NavBar extends React.Component {
     }
 }
 
-const selectState = (state) => {
-    return {
-        totalQuantity: state.cart.totalQuantity,
-        currentActiveCurrency: state.currency.currentActiveCurrency
-    }
-};
-
-export default withRedux(NavBar, selectState);
+export default withRedux(NavBar, selectToatalQuantityCurrentActiveCurrency);
 
 // const NavBar = ({categories,currentActiveCategory, setCurrentActiveCategory}) => {
 

@@ -19,4 +19,6 @@ export const currencySlice = createSlice(
 
 export const { changeCurrentActiveCurrency } = currencySlice.actions;
 
+export const selectCurrentActiveCurrency = state => state.currency.currentActiveCurrency;
+
 export default currencySlice.reducer;

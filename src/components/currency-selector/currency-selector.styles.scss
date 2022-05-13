@@ -6,18 +6,23 @@
     border-radius: 5px;
 
     position: absolute;
-    top: 35px;
-    left: -32px;
+    top: 40px;
+    left: -8px;
     // width: 100px;
     // height: 500px;
     min-width: 100px;
     background-color: #ffffff;
     box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
 
-    .currency-list-items-container {
+    .currency-list-items-container {        
+        text-align: center;
         .currency-p-list-item {
             margin: 0;
             padding: 10px 0;
+        }
+
+        .currency-p-list-item.selected {
+            background-color: #E5E5E5;
         }
     }
 }

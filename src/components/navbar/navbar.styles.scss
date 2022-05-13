@@ -81,6 +81,8 @@
         .currency-switcher {
             position: relative;
             margin-right: 20px;
+            min-width: 60px;
+            text-align: right;
 
             .currency-symbol {
                 display: inline-block;
