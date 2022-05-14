@@ -33,3 +33,21 @@ export const isProductWithSameAttributesPresent = (productsArray,productToBeAdde
     })
     return {result,foundProductObject};
 }
+
+
+export function getIncreasedTotalPrices(previousPrices, pricesArrayOfProductToBeAdded) {
+    if(previousPrices.length === 0) {
+        return pricesArrayOfProductToBeAdded.map((priceObject) => {
+            let tempObj = {...priceObject};
+            tempObj["tax"] = Number(parseFloat(tempObj.amount*0.21).toFixed(2));
+            return tempObj;
+        });
+    }
+    return previousPrices.map((priceObject,index) => {
+        // let tempObj = {...priceObject};
+        priceObject.amount += pricesArrayOfProductToBeAdded[index].amount;
+        priceObject.amount = Number(parseFloat(priceObject.amount).toFixed(2));
+        priceObject.tax = Number(parseFloat(priceObject.amount*0.21).toFixed(2));
+        return priceObject;
+    });
+}

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { isProductWithSameAttributesPresent } from './cart-slice-utils';
+import { isProductWithSameAttributesPresent, getIncreasedTotalPrices } from './cart-slice-utils';
 import { current } from '@reduxjs/toolkit';
 
 
@@ -7,7 +7,8 @@ export const cartSlice = createSlice({
     name: 'counter',
     initialState: {
         products: {},
-        totalQuantity: 0
+        totalQuantity: 0,
+        totalPrices: []
     },
     reducers: {
         // Here state means we will get only cart object.
@@ -16,17 +17,23 @@ export const cartSlice = createSlice({
                 action.payload.index = 0;
                 action.payload.quantity = 1;
                 state.totalQuantity += 1;
+                state.totalPrices = getIncreasedTotalPrices(state.totalPrices,action.payload.prices);
                 state.products[action.payload.id] = [action.payload];
+                console.log(state.totalPrices);
             } else {
                 const resultObject = isProductWithSameAttributesPresent(state.products[action.payload.id],action.payload);
                 if(resultObject.result) {
                     resultObject.foundProductObject.quantity += 1;
                     state.totalQuantity += 1;
+                    state.totalPrices = getIncreasedTotalPrices(state.totalPrices,action.payload.prices);
+                    console.log(state.totalPrices);
                 } else {
                     action.payload.index = state.products[action.payload.id].length;
                     action.payload.quantity = 1;
                     state.totalQuantity += 1;
+                    state.totalPrices = getIncreasedTotalPrices(state.totalPrices,action.payload.prices);
                     state.products[action.payload.id].push(action.payload);
+                    console.log(state.totalPrices);
                 }
             }
         }
@@ -40,11 +47,13 @@ export const { addToCart } = cartSlice.actions;
 //     return state.cart.totalQuantity
 // };
 
-export const selectToatalQuantityCurrentActiveCurrency = (state) => {
+export const selectCartCurrentActiveCurrency = (state) => {
     return {
-        totalQuantity: state.cart.totalQuantity,
+        ...state.cart,
         currentActiveCurrency: state.currency.currentActiveCurrency
     }
 };
+
+
 
 export default cartSlice.reducer;

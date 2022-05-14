@@ -1,0 +1,75 @@
+.cart-product-details-container {
+    font-family: Raleway, sans-serif;
+    // margin-bottom: 20px;
+
+    h1.brand-name-cpdc {
+        font-size: 1rem;
+        text-align: left;
+        font-weight: 300;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+    h2.product-name-cpdc {
+        font-size: 1rem;
+        text-align: left;
+        font-weight: 300;
+        margin: 0;
+        margin-bottom: 13px;
+    }
+    p.price-p-cpdc {
+        font-size: 1rem;
+        text-align: left;
+        font-weight: 500;
+        margin: 0;
+        margin-bottom: 13px;
+    }
+
+    .attribute-selector-container {
+        margin-bottom: 10px;
+
+        h3.attribute-name {
+            font-size: 0.875rem;
+            font-weight: 400;
+        }
+
+        .attributes-container {
+            &.text-attr {
+                .attribute-value {
+                    font-size: 0.875rem;
+                    padding: 0.35em 0.57em;
+                }
+    
+                .attribute-value:hover {
+                    cursor: default;
+                }
+            }
+
+            &.swatch-attr {
+                .attribute-value {
+                    width: 16px;
+                    height: 16px;
+                    margin-bottom: 2px;
+                }
+
+                .attribute-value:hover {
+                    cursor: default;
+                }
+
+                .attribute-value:nth-child(1) {
+                    margin-left: 2px;
+                }
+
+                .attribute-value.selected-value {
+                    // border: 1px solid #5ECE7B;
+                    outline: 1px solid #5ECE7B;
+                    outline-offset: 1px;
+                }
+            }
+
+        }
+
+
+        
+    }
+
+}

@@ -48,9 +48,7 @@ class ProductAttribute extends React.Component {
                                         style={
                                             this.props.attributeObject.type !== "swatch"?{}:
                                             {
-                                                backgroundColor: itemObject.value,
-                                                width: "30px",
-                                                height: "30px"
+                                                backgroundColor: itemObject.value                                              
                                             }
                                         }
                                         onClick={this.onAttributeValueClick({

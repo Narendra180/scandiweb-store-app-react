@@ -4,9 +4,10 @@ import { ReactComponent as CaronIcon } from '../../images/caron-symbol.svg';
 import { ReactComponent as CartIcon } from '../../images/cart-icon.svg';
 import CurrencySelector from '../currency-selector/currency-selector.component';
 import withRedux from '../../hoc-components/withRedux';
-import { selectToatalQuantityCurrentActiveCurrency } from '../../redux/redux-slices/cart-slice-folder/cart-slice';
+import { selectCartCurrentActiveCurrency } from '../../redux/redux-slices/cart-slice-folder/cart-slice';
 import { changeCurrentActiveCurrency } from '../../redux/redux-slices/currency-slice-folder/currency-slice';
 import { Link } from "react-router-dom";
+import CartOverlay from '../cart-overlay/cart-overlay-comp';
 import "./navbar.styles.scss";
 
 
@@ -14,7 +15,8 @@ class NavBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isCurrencySelectorOpen: false
+            isCurrencySelectorOpen: false,
+            isCartOverlayOpen: false
         }
     }
 
@@ -55,6 +57,21 @@ class NavBar extends React.Component {
         this.props.redux.dispatch(changeCurrentActiveCurrency({label,symbol}));
         this.setState({isCurrencySelectorOpen:false});
     }
+
+    // opens cart overlay.
+    handleCartIconClick = () => {
+        this.setState((prevState,prevProps) => {
+            return {isCartOverlayOpen: !prevState.isCartOverlayOpen};
+        });
+    }
+
+    // close cart overlay when clicked away.
+    // handleCartOverlayBlur = (e) => {
+    //     // console.log("blurr",e.currentTarget,e.relatedTarget,e);
+    //     if(!e.relatedTarget) {
+    //         this.setState({isCartOverlayOpen: false});
+    //     }
+    // }   
 
     render() {
         return (
@@ -113,14 +130,20 @@ class NavBar extends React.Component {
                         </span>
                         <CaronIcon className={`caron-svg ${
                             this.state.isCurrencySelectorOpen?"active":""
-                        }`}/>
+                        }`}
+                        />
                         <CurrencySelector
                             isOpen={this.state.isCurrencySelectorOpen}
                             onChange={this.handleCurrencySelectorChange}
                             value={this.props.redux.selectedStateValue.currentActiveCurrency}
                         />
                     </div>
-                    <div className="cart-icon">
+                    <div 
+                        className="cart-icon"
+                        onClick={this.handleCartIconClick}
+                        tabIndex="0"
+                        onBlur={this.handleCartOverlayBlur}
+                    >
                         <CartIcon className="cart-icon-svg"/>
                         <span className={`cart-quantity-indicator ${
                             this.props.redux.selectedStateValue.totalQuantity < 1?
@@ -133,12 +156,16 @@ class NavBar extends React.Component {
                         </span>
                     </div>
                 </div>
+                <CartOverlay 
+                    isOpen={this.state.isCartOverlayOpen}
+                    blurHandler={this.handleCartOverlayBlur}
+                />
             </div>
         );
     }
 }
 
-export default withRedux(NavBar, selectToatalQuantityCurrentActiveCurrency);
+export default withRedux(NavBar, selectCartCurrentActiveCurrency);
 
 // const NavBar = ({categories,currentActiveCategory, setCurrentActiveCategory}) => {
 

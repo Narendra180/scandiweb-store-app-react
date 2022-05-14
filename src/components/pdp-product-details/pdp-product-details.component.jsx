@@ -26,9 +26,9 @@ class PdpProductDetails extends React.Component {
 
     addProductToCart = () => {
         // console.log(this.props.product);
-        const {id,name,brand,prices} = this.props.product;
+        const {id,name,brand,prices,gallery} = this.props.product;
         const productObject = {
-            id,name,brand,prices,
+            id,name,brand,prices,gallery,
             selectedAttributes: this.state,
             allProductAttributes: this.props.product.attributes
         }

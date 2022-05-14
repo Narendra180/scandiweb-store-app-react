@@ -18,6 +18,14 @@
         &.swatch-attr {
             .attribute-value {
                 margin-right: 10px;
+                width: 30px;
+                height: 30px;
+            }
+            
+
+            .attribute-value:nth-child(1) {
+                margin-left: 3px;
+                // margin-bottom: 3px;
             }
 
             .attribute-value.selected-value {

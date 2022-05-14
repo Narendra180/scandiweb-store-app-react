@@ -22,7 +22,9 @@ class Price extends React.Component {
         const activePriceObject = this.props.prices.find(priceObject => {
             return priceObject.currency.label === this.props.redux.selectedStateValue.label;
         })
-        this.setState({price: activePriceObject});
+        if(activePriceObject) {
+            this.setState({price: activePriceObject});
+        }
     }
 
     componentDidMount() {
@@ -40,13 +42,15 @@ class Price extends React.Component {
 
     render() {
         return(
-            <span>
+            <span
+                className="price-value-span"
+            >
                 {/* {
                     this.props.prices.find(priceObject => {
                         return priceObject
                     })
                 } */}
-                {this.state.price.currency.symbol}{this.state.price.amount}
+                {this.state.price.currency.symbol}{parseFloat(this.state.price.amount).toFixed(2)}
             </span>
         );
     }
