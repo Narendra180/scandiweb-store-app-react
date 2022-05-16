@@ -50,7 +50,13 @@ class Price extends React.Component {
                         return priceObject
                     })
                 } */}
-                {this.state.price.currency.symbol}{parseFloat(this.state.price.amount).toFixed(2)}
+                {this.state.price.currency.symbol}{
+                    !this.props.isTax
+                    ?
+                    parseFloat(this.state.price.amount).toFixed(2)
+                    :
+                    parseFloat(this.state.price.tax).toFixed(2)
+                }
             </span>
         );
     }

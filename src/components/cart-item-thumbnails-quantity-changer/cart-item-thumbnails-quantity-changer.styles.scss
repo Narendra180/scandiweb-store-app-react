@@ -15,6 +15,10 @@
             width: 24px; 
             height: 24px;
             background-color: white;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         .qunatity-span {

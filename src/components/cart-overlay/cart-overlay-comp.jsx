@@ -1,14 +1,20 @@
 import React from "react";
 import CartProductDetails from "../cart-product-details/cart-product-details.component";
-import cartItemThumbnailsQuantityChangerComponent from "../cart-item-thumbnails-quantity-changer/cart-item-thumbnails-quantity-changer.component";
+import CartItemThumbnailsQuantityChangerComponent from "../cart-item-thumbnails-quantity-changer/cart-item-thumbnails-quantity-changer.component";
 import Price from "../price/price.component";
 import { selectCartCurrentActiveCurrency } from "../../redux/redux-slices/cart-slice-folder/cart-slice";
+import withRouter from "../../hoc-components/with-router";
 import withRedux from "../../hoc-components/withRedux";
 import "./cart-overlay.styles.scss";
-import CartItemThumbnailsQuantityChangerComponent from "../cart-item-thumbnails-quantity-changer/cart-item-thumbnails-quantity-changer.component";
 
 
 class CartOverlay extends React.Component {
+
+    handleViewBagClick = (e) => {
+        // console.log(e,"view bag btn clicked");
+        this.props.router.navigate("/cart");
+    }
+
     render() {
 
         return (
@@ -85,6 +91,7 @@ class CartOverlay extends React.Component {
                         >
                             <button 
                                 className="view-bag-btn"
+                                onClick={this.handleViewBagClick}
                             >
                                 view bag
                             </button>
@@ -102,4 +109,4 @@ class CartOverlay extends React.Component {
     }
 }
 
-export default withRedux(CartOverlay,selectCartCurrentActiveCurrency);
+export default withRedux(withRouter(CartOverlay),selectCartCurrentActiveCurrency);

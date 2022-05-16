@@ -117,6 +117,10 @@
                     color: #1D1F22;
                     background-color: white;
                     border: 1px solid #1D1F22;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
                 .checkout-btn {
                     font-family: Raleway,sans-serif;

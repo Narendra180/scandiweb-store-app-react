@@ -4,6 +4,7 @@ import { gql } from '@apollo/client';
 import { apolloClient } from './index';
 import ProductCardsList from './pages/product-cards-list/product-cards-list.component';
 import ProductDescription from './pages/product-description-page/product-description-page.component';
+import CartPage from "./pages/cart-page/cart-page.component";
 import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
 
@@ -94,14 +95,19 @@ class App extends React.Component {
 
                             <Route 
                                 path="/pdp/:productId"
-                                element={<ProductDescription a={1}/>}
+                                element={<ProductDescription />}
+                            />
+
+                            <Route 
+                                path="/cart"
+                                element={<CartPage />}
                             />
 
                             <Route
                                 path="*"
                                 element={
                                     <main style={{ padding: "1rem" }}>
-                                    <p>There's nothing here!</p>
+                                        <p>There's nothing here!</p>
                                     </main>
                                 }
                             />

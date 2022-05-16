@@ -19,21 +19,21 @@ export const cartSlice = createSlice({
                 state.totalQuantity += 1;
                 state.totalPrices = getIncreasedTotalPrices(state.totalPrices,action.payload.prices);
                 state.products[action.payload.id] = [action.payload];
-                console.log(state.totalPrices);
+                // console.log(state.totalPrices);
             } else {
                 const resultObject = isProductWithSameAttributesPresent(state.products[action.payload.id],action.payload);
                 if(resultObject.result) {
                     resultObject.foundProductObject.quantity += 1;
                     state.totalQuantity += 1;
                     state.totalPrices = getIncreasedTotalPrices(state.totalPrices,action.payload.prices);
-                    console.log(state.totalPrices);
+                    // console.log(state.totalPrices);
                 } else {
                     action.payload.index = state.products[action.payload.id].length;
                     action.payload.quantity = 1;
                     state.totalQuantity += 1;
                     state.totalPrices = getIncreasedTotalPrices(state.totalPrices,action.payload.prices);
                     state.products[action.payload.id].push(action.payload);
-                    console.log(state.totalPrices);
+                    // console.log(state.totalPrices);
                 }
             }
         }
