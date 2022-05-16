@@ -1,4 +1,3 @@
-import { current } from '@reduxjs/toolkit';
 
 const checkIfObjectsAreSame = (object1,object2) => {
     let result = true;

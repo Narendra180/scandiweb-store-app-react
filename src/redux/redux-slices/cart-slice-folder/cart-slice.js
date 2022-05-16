@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isProductWithSameAttributesPresent, getIncreasedTotalPrices, getDecreasedTotalPrices } from './cart-slice-utils';
-import { current } from '@reduxjs/toolkit';
 
 
 export const cartSlice = createSlice({
@@ -44,6 +43,8 @@ export const cartSlice = createSlice({
                 state.totalQuantity -= 1;
                 state.totalPrices = getDecreasedTotalPrices(state.totalPrices,action.payload.prices);
             } else if(state.products[action.payload.id][action.payload.index].quantity === 1) {
+                const overlayContentdiv = document.querySelector(".cart-overlay-content");
+                overlayContentdiv.focus();
                 state.products[action.payload.id] = state.products[action.payload.id].filter((productObject,i) => {
                     if(i > action.payload.index) {
                         productObject.index -= 1;

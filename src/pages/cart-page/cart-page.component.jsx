@@ -29,6 +29,7 @@ class CartPage extends React.Component {
                                             />
                                             <CartItemThumbnailsQunatityChanger 
                                                 product={productObject}
+                                                isCartPage
                                             />
                                         </div>
                                     )
@@ -36,7 +37,9 @@ class CartPage extends React.Component {
                             )
                         })
                         :
-                        <div>
+                        <div
+                            style={{marginTop: "90px",fontSize: "18px"}}
+                        >
                             <p>There are no items in the cart.</p>
                         </div>
                     }

@@ -12,6 +12,7 @@ class CartOverlay extends React.Component {
 
     handleViewBagClick = (e) => {
         // console.log(e,"view bag btn clicked");
+        this.props.cartOverlayClose();
         this.props.router.navigate("/cart");
     }
 
@@ -69,7 +70,7 @@ class CartOverlay extends React.Component {
                             }                            
                         </div>
                         :
-                        <div>
+                        <div className="noitemscart-p-div">
                             <p>There are no items to in the cart.</p>
                         </div>
                         )
@@ -85,20 +86,19 @@ class CartOverlay extends React.Component {
                             <span className="label-span">Total</span>
                             <Price 
                                 prices={this.props.redux.selectedStateValue.totalPrices}
-                                isCOC
                             />
                         </p>
                         <div
                             className="vc-btns-container"
                         >
                             <button 
-                                className="view-bag-btn"
+                                className="view-bag-btn vcbtn"
                                 onClick={this.handleViewBagClick}
                             >
                                 view bag
                             </button>
                             <button
-                                className="checkout-btn"
+                                className="checkout-btn vcbtn"
                             >
                                 check out
                             </button>

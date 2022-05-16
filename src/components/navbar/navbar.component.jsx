@@ -65,13 +65,24 @@ class NavBar extends React.Component {
         });
     }
 
+    handleCartIconBlur = (e) => {
+        const cartOverlayContentDiv = document.querySelector(".cart-overlay-content");
+        if(!cartOverlayContentDiv.contains(e.relatedTarget)) {
+            this.setState({isCartOverlayOpen: false});
+        }
+    }
+
     // close cart overlay when clicked away.
-    // handleCartOverlayBlur = (e) => {
-    //     // console.log("blurr",e.currentTarget,e.relatedTarget,e);
-    //     if(!e.relatedTarget) {
-    //         this.setState({isCartOverlayOpen: false});
-    //     }
-    // }   
+    handleCartOverlayBlur = (e) => {
+        const cartOverlayContentDiv = document.querySelector(".cart-overlay-content");
+        if(!cartOverlayContentDiv.contains(e.relatedTarget)) {
+            this.setState({isCartOverlayOpen: false});
+        }
+    }   
+
+    handleCartOverlayClose = () => {
+        this.setState({isCartOverlayOpen: false});
+    }
 
     render() {
         return (
@@ -142,7 +153,7 @@ class NavBar extends React.Component {
                         className="cart-icon"
                         onClick={this.handleCartIconClick}
                         tabIndex="0"
-                        onBlur={this.handleCartOverlayBlur}
+                        onBlur={this.handleCartIconBlur}
                     >
                         <CartIcon className="cart-icon-svg"/>
                         <span className={`cart-quantity-indicator ${
@@ -159,6 +170,7 @@ class NavBar extends React.Component {
                 <CartOverlay 
                     isOpen={this.state.isCartOverlayOpen}
                     blurHandler={this.handleCartOverlayBlur}
+                    cartOverlayClose={this.handleCartOverlayClose}
                 />
             </div>
         );
