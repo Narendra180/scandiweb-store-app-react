@@ -44,10 +44,21 @@ export function getIncreasedTotalPrices(previousPrices, pricesArrayOfProductToBe
         });
     }
     return previousPrices.map((priceObject,index) => {
-        // let tempObj = {...priceObject};
-        priceObject.amount += pricesArrayOfProductToBeAdded[index].amount;
-        priceObject.amount = Number(parseFloat(priceObject.amount).toFixed(2));
-        priceObject.tax = Number(parseFloat(priceObject.amount*0.21).toFixed(2));
-        return priceObject;
+        let tempObj = {...priceObject};
+        tempObj.amount += pricesArrayOfProductToBeAdded[index].amount;
+        tempObj.amount = Number(parseFloat(tempObj.amount).toFixed(2));
+        tempObj.tax = Number(parseFloat(tempObj.amount*0.21).toFixed(2));
+        return tempObj;
+    });
+}
+
+export function getDecreasedTotalPrices(totalPricesArray, pricesArrayOfProductToBeRemoved) {
+    return totalPricesArray.map((priceObject,index) => {
+        let tempObj = {...priceObject};
+        tempObj.amount -= pricesArrayOfProductToBeRemoved[index].amount;
+        tempObj.amount = Number(parseFloat(tempObj.amount).toFixed(2));
+        tempObj.tax = Number(parseFloat(tempObj.amount*0.21).toFixed(2));
+        // console.log(tempObj)
+        return tempObj;
     });
 }

@@ -38,7 +38,8 @@ class CartOverlay extends React.Component {
                     {
                         this.props.isOpen
                         ?
-                        (Object.keys(this.props.redux.selectedStateValue.products).length
+                        (
+                        this.props.redux.selectedStateValue.totalQuantity > 0
                         ?
                         <div
                             className="selected-product-details-container"
@@ -84,6 +85,7 @@ class CartOverlay extends React.Component {
                             <span className="label-span">Total</span>
                             <Price 
                                 prices={this.props.redux.selectedStateValue.totalPrices}
+                                isCOC
                             />
                         </p>
                         <div

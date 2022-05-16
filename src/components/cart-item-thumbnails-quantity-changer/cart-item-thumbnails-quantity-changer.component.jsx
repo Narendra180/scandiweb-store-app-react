@@ -1,5 +1,5 @@
 import React from "react";
-import { addToCart } from "../../redux/redux-slices/cart-slice-folder/cart-slice";
+import { addToCart,removeItemFromCart } from "../../redux/redux-slices/cart-slice-folder/cart-slice";
 import withRedux from "../../hoc-components/withRedux";
 import { ReactComponent as PlusIcon } from '../../images/plus-square.svg';
 import { ReactComponent as MinusIcon } from '../../images/minus-square.svg';
@@ -19,6 +19,7 @@ class CartItemThumbnailsQunatityChanger extends React.Component {
 
     handleMinusIconClick = () => {
         console.log("minus icon clicked",this.props.product);
+        this.props.redux.dispatch(removeItemFromCart(this.props.product));
     }
 
     render() {

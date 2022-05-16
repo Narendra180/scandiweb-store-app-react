@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { isProductWithSameAttributesPresent, getIncreasedTotalPrices } from './cart-slice-utils';
+import { isProductWithSameAttributesPresent, getIncreasedTotalPrices, getDecreasedTotalPrices } from './cart-slice-utils';
 import { current } from '@reduxjs/toolkit';
 
 
@@ -36,11 +36,32 @@ export const cartSlice = createSlice({
                     // console.log(state.totalPrices);
                 }
             }
+        },
+
+        removeItemFromCart: (state,action) => {
+            if(state.products[action.payload.id][action.payload.index].quantity > 1) {
+                state.products[action.payload.id][action.payload.index].quantity -= 1;
+                state.totalQuantity -= 1;
+                state.totalPrices = getDecreasedTotalPrices(state.totalPrices,action.payload.prices);
+            } else if(state.products[action.payload.id][action.payload.index].quantity === 1) {
+                state.products[action.payload.id] = state.products[action.payload.id].filter((productObject,i) => {
+                    if(i > action.payload.index) {
+                        productObject.index -= 1;
+                    }
+                    return action.payload.index !== i;
+                });
+                state.totalQuantity -= 1;
+                state.totalPrices = getDecreasedTotalPrices(state.totalPrices,action.payload.prices);
+
+                if(state.products[action.payload.id].length === 0) {
+                    delete state.products[action.payload.id];
+                }
+            }
         }
     }
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart,removeItemFromCart } = cartSlice.actions;
 
 // Here state means we will get complete store state object not only cart object.
 // export const selectTotalQuantity = (state) => {

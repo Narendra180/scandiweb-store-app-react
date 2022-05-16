@@ -13,7 +13,7 @@ class Price extends React.Component {
               "label": ""
             },
             "amount": 0
-          }
+        }
     }
 
     isComponentAlreadyUpdated = false;
@@ -22,13 +22,25 @@ class Price extends React.Component {
         const activePriceObject = this.props.prices.find(priceObject => {
             return priceObject.currency.label === this.props.redux.selectedStateValue.label;
         })
+
         if(activePriceObject) {
             this.setState({price: activePriceObject});
+        } else {
+            this.setState({
+                price: {
+                    "currency": {
+                      "symbol": "",
+                      "label": ""
+                    },
+                    "amount": 0
+                }
+            });
         }
     }
 
     componentDidMount() {
-        this.getActivePrice();
+        if(this.props.prices.length)
+            this.getActivePrice();
     }
 
     componentDidUpdate() {
