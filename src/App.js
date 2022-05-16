@@ -5,7 +5,7 @@ import { apolloClient } from './index';
 import ProductCardsList from './pages/product-cards-list/product-cards-list.component';
 import ProductDescription from './pages/product-description-page/product-description-page.component';
 import CartPage from "./pages/cart-page/cart-page.component";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import './App.css';
 
 const GET_CATEGORY_NAMES = gql`
