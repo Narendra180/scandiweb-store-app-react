@@ -90,8 +90,7 @@ class CartItemThumbnailsQunatityChanger extends React.Component {
                         </div>      
                         :
                         ""
-                    }
-                                  
+                    }                                  
                 </div>
             </div>
         )
