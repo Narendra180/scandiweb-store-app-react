@@ -18,7 +18,7 @@ class ProductCard extends React.Component {
     }
 
     addProductToCart = () => {
-        let initialSelectedAttributes = {};
+        const initialSelectedAttributes = {};
         this.props.product.attributes.forEach((attributeObject,i) => {
             initialSelectedAttributes[attributeObject.name] = attributeObject.items[0].value;
         })

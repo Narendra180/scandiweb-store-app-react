@@ -36,13 +36,13 @@ export const isProductWithSameAttributesPresent = (productsArray,productToBeAdde
 export function getIncreasedTotalPrices(previousPrices, pricesArrayOfProductToBeAdded) {
     if(previousPrices.length === 0) {
         return pricesArrayOfProductToBeAdded.map((priceObject) => {
-            let tempObj = {...priceObject};
+            const tempObj = {...priceObject};
             tempObj["tax"] = Number(parseFloat(tempObj.amount*0.21).toFixed(2));
             return tempObj;
         });
     }
     return previousPrices.map((priceObject,index) => {
-        let tempObj = {...priceObject};
+        const tempObj = {...priceObject};
         tempObj.amount += pricesArrayOfProductToBeAdded[index].amount;
         tempObj.amount = Number(parseFloat(tempObj.amount).toFixed(2));
         tempObj.tax = Number(parseFloat(tempObj.amount*0.21).toFixed(2));
@@ -52,7 +52,7 @@ export function getIncreasedTotalPrices(previousPrices, pricesArrayOfProductToBe
 
 export function getDecreasedTotalPrices(totalPricesArray, pricesArrayOfProductToBeRemoved) {
     return totalPricesArray.map((priceObject,index) => {
-        let tempObj = {...priceObject};
+        const tempObj = {...priceObject};
         tempObj.amount -= pricesArrayOfProductToBeRemoved[index].amount;
         tempObj.amount = Number(parseFloat(tempObj.amount).toFixed(2));
         tempObj.tax = Number(parseFloat(tempObj.amount*0.21).toFixed(2));

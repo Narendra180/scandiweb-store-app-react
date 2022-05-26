@@ -22,21 +22,21 @@ class NavBar extends React.Component {
     }
 
     componentDidMount() {
-        let activeCategory = document.querySelector(".category.active-category");
+        const activeCategory = document.querySelector(".category.active-category");
         this.setActiveIndicatorPosition(activeCategory);
     }
 
 
     handleCategoryNameClick = (e) => {
         if(e.target === e.currentTarget) return;
-        let indexOfTargetInCategories = e.target.dataset.index;
+        const indexOfTargetInCategories = e.target.dataset.index;
         this.props.setCurrentActiveCategory(this.props.categories[indexOfTargetInCategories]);
         this.setActiveIndicatorPosition(e.target);
         this.props.router.navigate("/category/"+this.props.categories[indexOfTargetInCategories].name);
     }
 
     setActiveIndicatorPosition(activeCategoryDomObject) {
-        let activeIndicator = document.querySelector(".navbar-left-group-active-indicator");
+        const activeIndicator = document.querySelector(".navbar-left-group-active-indicator");
         activeIndicator.style.left = activeCategoryDomObject.offsetLeft+"px";
         activeIndicator.style.width = activeCategoryDomObject.offsetWidth+"px";
     }
