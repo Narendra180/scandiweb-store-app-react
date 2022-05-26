@@ -13,7 +13,7 @@ class PdpProductDetails extends React.Component {
 
         // we will have selected attribute values in this state.
         this.state = {}
-
+        this.productDescriptionDivRef = React.createRef();
     }
 
     componentDidMount() {
@@ -22,10 +22,15 @@ class PdpProductDetails extends React.Component {
             initialSelectedAttributes[attributeObject.name] = attributeObject.items[0].value;
         })
         this.setState(initialSelectedAttributes);
+
+        if(!this.productDescriptionDivRef.current.textContent) {
+            this.productDescriptionDivRef.current.appendChild(
+                new DOMParser().parseFromString(this.props.product.description,"text/html").body.firstChild
+            );
+        }
     }
 
     addProductToCart = () => {
-        // console.log(this.props.product);
         const {id,name,brand,prices,gallery} = this.props.product;
         const productObject = {
             id,name,brand,prices,gallery,
@@ -40,7 +45,6 @@ class PdpProductDetails extends React.Component {
     }
 
     render() {
-        // console.log(this.props,this.state)
         return (
             <div
                 className="product-details"
@@ -71,9 +75,6 @@ class PdpProductDetails extends React.Component {
                         <div
                             className="attribute-value"
                         >
-                            {/* {
-                                this.props.product.prices[0].currency.symbol+this.props.product.prices[0].amount
-                            } */}
                             <p>
                                 <Price 
                                     prices={this.props.product.prices}
@@ -92,15 +93,11 @@ class PdpProductDetails extends React.Component {
 
                     <div className="product-description-text-container">
                         <div
-                            dangerouslySetInnerHTML={{__html: `${this.props.product.description}`}}
+                            className="product-description-div"
+                            ref={this.productDescriptionDivRef}
                         >
 
-                        </div>
-                        {
-                            // this.props.product.description
-                            // this.props.product.description.substring(3,this.props.product.description.length-4)
-                            // new DOMParser().parseFromString("<p>Hello</p>","text/html").body.firstChild.textContent
-                        }
+                        </div>                       
                     </div>
                     
                 </div>

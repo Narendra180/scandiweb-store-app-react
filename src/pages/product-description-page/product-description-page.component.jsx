@@ -63,7 +63,7 @@ class ProductDescription extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state.activeGalleryImageLink);
+        // console.log(this.state.activeGalleryImageLink);
     }
 
     getProductDetails = async () => {
