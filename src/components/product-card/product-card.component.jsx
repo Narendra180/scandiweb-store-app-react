@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactComponent as CartIcon } from '../../images/cart-icon.svg';
 import { addToCart } from "../../redux/redux-slices/cart-slice-folder/cart-slice";
+import OutOfStockOverlay from "../out-of-stock-overlay/out-of-stock-overlay.component";
 import withRedux from "../../hoc-components/withRedux";
 import withRouter from "../../hoc-components/with-router";
 import Price from "../price/price.component";
@@ -44,7 +45,8 @@ class ProductCard extends React.Component {
                 onClick={this.navigateToProductDescription(id)}
             >          
                 <div
-                    className={`product-card ${!inStock?" out-of-stock":""}`}
+                    // className={`product-card ${!inStock?" out-of-stock":""}`}
+                    className={`product-card`}
                 >
                     <div
                         className="product-img-div"
@@ -65,10 +67,14 @@ class ProductCard extends React.Component {
                         />
                     </p>                                
 
-
-                    <div className="out-of-stock-div">
-                        <p className="oos-p">out of stock</p>
-                    </div>
+                    {
+                        !inStock
+                        ?
+                        <OutOfStockOverlay />
+                        :
+                        ""
+                    }
+                    
                 </div>                      
             </div>
         );

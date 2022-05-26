@@ -62,6 +62,10 @@ class ProductDescription extends React.Component {
         // console.log(this.props)
     }
 
+    componentDidUpdate() {
+        console.log(this.state.activeGalleryImageLink);
+    }
+
     getProductDetails = async () => {
         const { productId } = this.props.router.params;
         try {

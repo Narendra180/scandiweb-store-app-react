@@ -1,14 +1,20 @@
 import React from "react";
+import OutOfStockOverlay from "../out-of-stock-overlay/out-of-stock-overlay.component";
 import "./pdp-product-images-gallery.styles.scss";
 
 class PdpProductImagesGallery extends React.Component {
 
     changeBigGalleryImage = (e) => {
-        // console.log(e.target.src);
         this.props.changeActiveBigGalleryImage(e.target.src);
     }
 
+    handleOutOfStockImageClick = (e) => {
+        e.stopPropagation();
+        this.props.changeActiveBigGalleryImage(e.currentTarget.dataset.link);
+    }
+
     render() {
+        const {product: {inStock,gallery,name},activeGalleryImageLink } = this.props;
         return (
             <div
                 className="product-images-gallery"
@@ -18,7 +24,7 @@ class PdpProductImagesGallery extends React.Component {
                     className="image-selector-container"
                 >
                     {
-                        this.props.product.gallery.map((imgLink,i) => {
+                        gallery.map((imgLink,i) => {
                             return (
                                 <div
                                     className="gallery-clickable-small-img-container"
@@ -27,8 +33,19 @@ class PdpProductImagesGallery extends React.Component {
                                 >
                                     <img 
                                         src={imgLink}
-                                        alt={`${this.props.product.name}'s ${i+1}`}
+                                        alt={`${name}'s ${i+1}`}
                                     />
+                                    {
+                                        !inStock
+                                        ?
+                                        <OutOfStockOverlay
+                                            data-link={imgLink}
+                                            onClick={this.handleOutOfStockImageClick}
+                                        />
+                                        :
+                                        ""
+                                    }
+                                    
                                 </div>
                             )
                         })
@@ -40,9 +57,17 @@ class PdpProductImagesGallery extends React.Component {
                     className="selected-image-container"
                 >
                     <img 
-                        src={this.props.activeGalleryImageLink} 
-                        alt={this.props.product.name}
+                        src={activeGalleryImageLink} 
+                        alt={name}
                     />
+                    {
+                        !inStock
+                        ?
+                        <OutOfStockOverlay 
+                        />
+                        :
+                        ""
+                    }
                 </div>
 
             </div>
