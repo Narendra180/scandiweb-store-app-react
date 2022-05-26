@@ -1,10 +1,10 @@
 .product-card-container {
     display: flex;
     justify-content: center;
+    padding: 0 16px 16px 0;
 }
 
 .product-card {
-    margin: 7px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -22,8 +22,9 @@
     .product-img-div {
         width: 225px;
         height: 216px;
-        background-size: cover;
+        background-size: contain;
         background-position: center;
+        background-repeat: no-repeat;
         position: relative;
     }
 
