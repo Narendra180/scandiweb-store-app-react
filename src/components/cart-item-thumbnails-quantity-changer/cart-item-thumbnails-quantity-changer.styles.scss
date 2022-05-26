@@ -28,13 +28,10 @@
 
     .items-images-carousel {
         position: relative;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
         width: 130px;
-        img {
-            object-fit: contain;        
-            width: 100%;
-            height: 100%;
-            border: 1px solid #dedede;
-        }
 
         .image-changer-arrow-container {
             position: absolute;

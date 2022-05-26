@@ -61,8 +61,8 @@ class CartItemThumbnailsQunatityChanger extends React.Component {
                 </div>
                 <div 
                     className="items-images-carousel"
+                    style={{backgroundImage: `url(${this.props.product.gallery[this.state.activeImage]})`}}
                 >
-                    <img src={this.props.product.gallery[this.state.activeImage]} alt={this.props.product.name}/>
                     {
                         this.props.isCartPage && this.props.product.gallery.length > 1 
                         ?
