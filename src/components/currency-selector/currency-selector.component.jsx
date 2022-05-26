@@ -20,10 +20,6 @@ class CurrencySelector extends React.Component {
         this.getAvailableCurrencies();
     }
 
-    componentDidUpdate() {
-        // console.log(this.props.value)
-    }
-
 
     getAvailableCurrencies = async () => {
         try {
@@ -61,7 +57,6 @@ class CurrencySelector extends React.Component {
                     >
                         {
                             this.state.currenciesArray.map(currencyObject => {
-                                // console.log(currencyObject);
                                 return (
                                     <p
                                         data-id="list-item-p"

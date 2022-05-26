@@ -17,10 +17,6 @@ class CartItemThumbnailsQunatityChanger extends React.Component {
         };
     }
 
-    // componentDidUpdate() {
-    //     console.log(this.state)
-    // }
-
     handlePlusIconClick = () => {
         this.props.redux.dispatch(addToCart(this.props.product));
     }

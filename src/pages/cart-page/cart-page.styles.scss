@@ -73,7 +73,6 @@
                         }
         
                         .attribute-value.selected-value {
-                            // border: 1px solid #5ECE7B;
                             outline: 2px solid #5ECE7B;
                             outline-offset: 2px;
                         }
@@ -88,7 +87,6 @@
 
         .cart-item-thumbnails-quantity-changer-container {
             .quantity-add-remove-btns-container {
-                // height: 150px;
                 margin-right: 15px;
         
                 .q-ch-btn {
@@ -111,15 +109,11 @@
             }
         
             .items-images-carousel {
-                // background-color: black;        
-                // height: 150px;
                 width: 200px;
                 img {
-                    // box-shadow: 0 0 2px 2px rgba(0,0,0,0.1);
                     object-fit: contain;        
                     width: 100%;
                     height: 100%;
-                    // border: 1px solid #dedede;
                 }
             }
         }

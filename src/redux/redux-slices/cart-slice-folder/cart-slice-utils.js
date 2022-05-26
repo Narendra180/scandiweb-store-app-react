@@ -22,7 +22,6 @@ export const isProductWithSameAttributesPresent = (productsArray,productToBeAdde
     let foundProductObject = {};
     productsArray.forEach((productObject,i) => {
         if(checkIfObjectsAreSame(productObject.selectedAttributes,productToBeAdded.selectedAttributes)) {
-            // console.log(current(attributes),productToBeAdded.attributes)
             result = true;
             foundProductObject = productObject;
             return;
@@ -57,7 +56,6 @@ export function getDecreasedTotalPrices(totalPricesArray, pricesArrayOfProductTo
         tempObj.amount -= pricesArrayOfProductToBeRemoved[index].amount;
         tempObj.amount = Number(parseFloat(tempObj.amount).toFixed(2));
         tempObj.tax = Number(parseFloat(tempObj.amount*0.21).toFixed(2));
-        // console.log(tempObj)
         return tempObj;
     });
 }

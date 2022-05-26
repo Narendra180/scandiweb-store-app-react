@@ -1,9 +1,7 @@
 .cart-item-thumbnails-quantity-changer-container {
     display: flex;
-    // max-height: 150px;
 
     .quantity-add-remove-btns-container {
-        // height: 150px;
         margin-right: 8px;
         display: flex;
         flex-direction: column;
@@ -29,12 +27,9 @@
     }
 
     .items-images-carousel {
-        // background-color: black;        
-        // height: 150px;
         position: relative;
         width: 130px;
         img {
-            // box-shadow: 0 0 2px 2px rgba(0,0,0,0.1);
             object-fit: contain;        
             width: 100%;
             height: 100%;
@@ -47,7 +42,6 @@
             right: 15px;
             height: 24px;
             display: flex;
-            // background-color: red;
 
             .arrow-btn {
                 padding: 0;

@@ -1,6 +1,5 @@
 .cart-product-details-container {
     font-family: Raleway, sans-serif;
-    // margin-bottom: 20px;
 
     h1.brand-name-cpdc {
         font-size: 1rem;
@@ -60,16 +59,11 @@
                 }
 
                 .attribute-value.selected-value {
-                    // border: 1px solid #5ECE7B;
                     outline: 1px solid #5ECE7B;
                     outline-offset: 1px;
                 }
             }
 
         }
-
-
-        
     }
-
 }

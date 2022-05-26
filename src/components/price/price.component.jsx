@@ -57,11 +57,6 @@ class Price extends React.Component {
             <span
                 className="price-value-span"
             >
-                {/* {
-                    this.props.prices.find(priceObject => {
-                        return priceObject
-                    })
-                } */}
                 {this.state.price.currency.symbol}{
                     !this.props.isTax
                     ?

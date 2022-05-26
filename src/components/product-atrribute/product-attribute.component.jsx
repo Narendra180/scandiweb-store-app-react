@@ -4,17 +4,8 @@ import "./product-attribute.styles.scss";
 
 class ProductAttribute extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state = {
-
-    //     }
-    // }
-
     onAttributeValueClick = (obj) => {
         return (e) => {
-            // console.log(obj,e);
             if(this.props.onChange) {
                 this.props.onChange(obj);
             }
@@ -22,7 +13,6 @@ class ProductAttribute extends React.Component {
     }
 
     render() {
-        // console.log(this.props,"paac");
         return (
             <div
                 className="attribute-selector-container"

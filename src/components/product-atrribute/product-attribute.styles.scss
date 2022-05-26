@@ -25,11 +25,9 @@
 
             .attribute-value:nth-child(1) {
                 margin-left: 3px;
-                // margin-bottom: 3px;
             }
 
             .attribute-value.selected-value {
-                // border: 1px solid #5ECE7B;
                 outline: 1px solid #5ECE7B;
                 outline-offset: 2px;
             }

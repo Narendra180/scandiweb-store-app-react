@@ -15,8 +15,6 @@
         font-family: Raleway,sans-serif;
         padding: 10px;
         position: absolute;
-        // width: 200px;
-        // height: 500px;
         background-color: white;
         top: 0;
         right: 5%;
@@ -27,12 +25,10 @@
         justify-content: space-between;
 
         .selected-product-details-container {
-            // background-color: blue;
             flex-grow: 1;
             overflow: auto;
             margin-bottom: 10px;
             margin-bottom: 20px;
-            // padding: 10px 8px 10px 0;
             padding: 0 8px 0 0;
 
             /* width */
@@ -82,7 +78,6 @@
         }
 
         .mybag-h3 {
-            // background-color: green;
             font-size: 1rem;
             font-weight: 500;
             margin: 0;
@@ -95,8 +90,6 @@
         }
 
         .totalprice-view-bag-checkout-btns-container {
-            // background-color: red;
-            // padding: 10px 0;
 
             .total-price-p {
                 margin: 0;

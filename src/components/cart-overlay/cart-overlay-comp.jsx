@@ -11,7 +11,6 @@ import "./cart-overlay.styles.scss";
 class CartOverlay extends React.Component {
 
     handleViewBagClick = (e) => {
-        // console.log(e,"view bag btn clicked");
         this.props.cartOverlayClose();
         this.props.router.navigate("/cart");
     }

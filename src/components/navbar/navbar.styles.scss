@@ -14,7 +14,6 @@
 
     .navbar-left-group {
         display: flex;
-        // align-items: center;
         font-family: Raleway, sans-serif;
         font-weight: 600;
         text-transform: uppercase;
@@ -38,8 +37,6 @@
         .active-category {
             color: #5ECE7B;
             transition: all 0.2s ease-out;
-            // border-bottom: 2px solid #5ECE7B ;
-            // padding-top: 12px;
         }
 
         .navbar-left-group-active-indicator {
@@ -67,7 +64,6 @@
 
             &:hover {
                 cursor: pointer;
-                // background-color: red;
             }
         }
     }

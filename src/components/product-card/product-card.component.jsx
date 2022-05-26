@@ -45,14 +45,12 @@ class ProductCard extends React.Component {
                 onClick={this.navigateToProductDescription(id)}
             >          
                 <div
-                    // className={`product-card ${!inStock?" out-of-stock":""}`}
                     className={`product-card`}
                 >
                     <div
                         className="product-img-div"
                         style={{backgroundImage: `url(${gallery[0]})`}}
                     >
-                        {/* <img className="product-img" src={gallery[0]} alt={name + " product"}/> */}
                         <button
                             className="add-to-cart-btn"
                             onClick={this.handleAddToCartIconClick}
