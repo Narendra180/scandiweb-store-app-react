@@ -4,6 +4,7 @@ import { ReactComponent as CaronIcon } from '../../images/caron-symbol.svg';
 import { ReactComponent as CartIcon } from '../../images/cart-icon.svg';
 import CurrencySelector from '../currency-selector/currency-selector.component';
 import withRedux from '../../hoc-components/withRedux';
+import withRouter from '../../hoc-components/with-router';
 import { selectCartCurrentActiveCurrency } from '../../redux/redux-slices/cart-slice-folder/cart-slice';
 import { changeCurrentActiveCurrency } from '../../redux/redux-slices/currency-slice-folder/currency-slice';
 import { Link } from "react-router-dom";
@@ -27,9 +28,11 @@ class NavBar extends React.Component {
 
 
     handleCategoryNameClick = (e) => {
+        if(e.target === e.currentTarget) return;
         let indexOfTargetInCategories = e.target.dataset.index;
         this.props.setCurrentActiveCategory(this.props.categories[indexOfTargetInCategories]);
         this.setActiveIndicatorPosition(e.target);
+        this.props.router.navigate("/category/"+this.props.categories[indexOfTargetInCategories].name);
     }
 
     setActiveIndicatorPosition(activeCategoryDomObject) {
@@ -39,7 +42,6 @@ class NavBar extends React.Component {
     }
 
     handleCurrencySwitcherClick = (e) => {
-        // console.log("handle currency switcher click",e.target.dataset.id);
         this.setState((prevState,prevProps) => {
             if(!e.target.dataset.id) {
                 return {isCurrencySelectorOpen: !prevState.isCurrencySelectorOpen}
@@ -48,17 +50,14 @@ class NavBar extends React.Component {
     }
 
     handleCurrencySwitcherBlur = (e) => {
-        // console.log("blurr",e.currentTarget,e.relatedTarget,e);
         this.setState({isCurrencySelectorOpen:false});
     }
 
     handleCurrencySelectorChange = ({target: {dataset: {symbol,label}}}) => {
-        // console.log({label,symbol})
         this.props.redux.dispatch(changeCurrentActiveCurrency({label,symbol}));
         this.setState({isCurrencySelectorOpen:false});
     }
 
-    // opens cart overlay.
     handleCartIconClick = () => {
         this.setState((prevState,prevProps) => {
             return {isCartOverlayOpen: !prevState.isCartOverlayOpen};
@@ -72,7 +71,6 @@ class NavBar extends React.Component {
         }
     }
 
-    // close cart overlay when clicked away.
     handleCartOverlayBlur = (e) => {
         const cartOverlayContentDiv = document.querySelector(".cart-overlay-content");
         if(!cartOverlayContentDiv.contains(e.relatedTarget)) {
@@ -84,20 +82,25 @@ class NavBar extends React.Component {
         this.setState({isCartOverlayOpen: false});
     }
 
+    handleNavbarLogoClick = () => {
+        
+    }
+
     render() {
+        // console.log(this.props.router)
         return (
             <div
                 className="navbar"
             >
                 <div
                     className="navbar-left-group"
+                    onClick={this.handleCategoryNameClick}
                 >
                     {
                         this.props.categories.map(({name},i) => {
                             return (
                                 <div 
                                     data-index = {i}
-                                    onClick={this.handleCategoryNameClick}
                                     key={i} 
                                     className={
                                         `category ${
@@ -121,6 +124,7 @@ class NavBar extends React.Component {
                 
                 <div
                     className='navbar-logo'
+                    onClick={this.handleNavbarLogoClick}
                 >
                     <Link to="/">
                         <Logo className="navbar-logo-svg"/>
@@ -177,81 +181,4 @@ class NavBar extends React.Component {
     }
 }
 
-export default withRedux(NavBar, selectCartCurrentActiveCurrency);
-
-// const NavBar = ({categories,currentActiveCategory, setCurrentActiveCategory}) => {
-
-    
-//     const handleCategoryNameClick = (e) => {
-//         let indexOfTargetInCategories = e.target.dataset.index;
-//         setCurrentActiveCategory(categories[indexOfTargetInCategories]);
-//         let activeIndicator = document.querySelector(".navbar-left-group-active-indicator");
-//         activeIndicator.style.left = e.target.offsetLeft+"px";
-//         activeIndicator.style.width = e.target.offsetWidth+"px";
-//     }
-
-//     useEffect(() =>  {
-//         let activeCategory = document.querySelector(".category.active-category");
-//         let activeIndicator = document.querySelector(".navbar-left-group-active-indicator");
-//         activeIndicator.style.left = activeCategory.offsetLeft+"px";
-//         activeIndicator.style.width = activeCategory.offsetWidth+"px";
-//         // console.log(activeCategory);
-//     });
-
-//     return (
-//         <div
-//             className="navbar"
-//         >
-//             <div
-//                 className="navbar-left-group"
-//             >
-//                 {
-//                     categories.map(({name},i) => {
-//                         return (
-//                             <div 
-//                                 data-index = {i}
-//                                 onClick={handleCategoryNameClick}
-//                                 key={i} 
-//                                 className={
-//                                     `category ${
-//                                         name===currentActiveCategory.name
-//                                         ?"active-category"
-//                                         :""                                    
-//                                     }`
-//                                 }
-//                             >
-//                                 {name}
-//                             </div>
-//                         )
-//                     })
-//                 }
-
-//                 <div 
-//                     className="navbar-left-group-active-indicator"
-
-//                 >
-//                 </div>
-//             </div>
-            
-//             <div
-//                 className='navbar-logo'
-//             >
-//                 <Logo className="navbar-logo-svg"/>
-//             </div>
-
-//             <div
-//                 className="navbar-right-group"
-//             >
-//                 <div className="currency-switcher">
-//                     <span className="currency-symbol">$</span>
-//                     <CaronIcon className="caron-svg"/>
-//                 </div>
-//                 <div className="cart-icon">
-//                     <CartIcon className="cart-icon-svg"/>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
-
-// export default NavBar;
+export default withRedux(withRouter(NavBar), selectCartCurrentActiveCurrency);

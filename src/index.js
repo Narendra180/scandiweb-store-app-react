@@ -20,7 +20,7 @@ export const apolloClient = new ApolloClient({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <ApolloProvider client={apolloClient}>
       <Provider store={store}>
         <BrowserRouter>
@@ -28,12 +28,8 @@ root.render(
         </BrowserRouter>
       </Provider>      
     </ApolloProvider>
-  // </React.StrictMode>
+  </React.StrictMode>
 );
 
 
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

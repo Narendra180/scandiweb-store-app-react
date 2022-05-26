@@ -6,6 +6,7 @@ import ProductCardsList from './pages/product-cards-list/product-cards-list.comp
 import ProductDescription from './pages/product-description-page/product-description-page.component';
 import CartPage from "./pages/cart-page/cart-page.component";
 import { Routes, Route } from "react-router-dom";
+import withRouter from './hoc-components/with-router';
 import './App.css';
 
 const GET_CATEGORY_NAMES = gql`
@@ -29,12 +30,18 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // console.log("component mounted");
         this.getCategories();
     }
 
-    componentWillUnmount() {
-        // console.log("component unmounted");
+    componentDidUpdate() {
+        if(this.state.categories.length > 0 && this.props.router.location.pathname === "/") {
+            this.props.router.navigate(`/category/${this.state.categories[0].name}`);
+            this.setCurrentActiveCategory(this.state.categories[0]);
+            const firstCategoryNamesOffsetWidth = document.querySelectorAll(".category")[0].offsetWidth;
+            const activeIndicator = document.querySelector(".navbar-left-group-active-indicator");
+            activeIndicator.style.left = "0";
+            activeIndicator.style.width = firstCategoryNamesOffsetWidth+"px";
+        }
     }
 
 
@@ -79,19 +86,23 @@ class App extends React.Component {
                             setCurrentActiveCategory={this.setCurrentActiveCategory}
                         />
 
-                        {/* <ProductCardsList 
-                            categoryName={this.state.currentActiveCategory.name}
-                        /> */}
+                        <Routes>                    
 
-                        <Routes>
-                            <Route 
-                                path="/" 
-                                element={
-                                    <ProductCardsList 
-                                        categoryName={this.state.currentActiveCategory.name}
-                                    />
-                                } 
-                            />
+                            {
+                                this.state.categories.map((categoryNameObj,i) => {
+                                    return (
+                                        <Route
+                                            key={i} 
+                                            path={`/category/${categoryNameObj.name}`}
+                                            element={
+                                                <ProductCardsList 
+                                                    categoryName={categoryNameObj.name}
+                                                />
+                                            } 
+                                        />
+                                    )
+                                })
+                            }
 
                             <Route 
                                 path="/pdp/:productId"
@@ -112,7 +123,6 @@ class App extends React.Component {
                                 }
                             />
                         </Routes>
-
                         
                     </>
                     
@@ -123,40 +133,5 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default withRouter(App);
 
-
-// function App() {
-
-//     const [currentActiveCategory, setCurrentActiveCategory] = useState("");
-
-//     const onGettingCategories = (data) => {
-//         setCurrentActiveCategory(data.categories[0]);
-//     }
-
-//     const { loading, error, data } = useQuery(GET_CATEGORY_NAMES,
-//         { onCompleted: onGettingCategories }
-//     );
-
-
-//     useEffect(() => {
-//         // console.log(currentActiveCategory)
-//     });
-
-//     if (loading) return 'Loading...';
-//     if (error) return `Error! ${error.message}`;
-
-//     return (
-//         <div className="App">
-
-//             <NavBar
-//                 categories={data.categories}
-//                 currentActiveCategory={currentActiveCategory}
-//                 setCurrentActiveCategory={setCurrentActiveCategory}
-//             />
-
-//         </div>
-//     );
-// }
-
-// export default App;
