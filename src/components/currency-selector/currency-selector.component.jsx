@@ -1,24 +1,8 @@
 import React from "react";
 import { apolloClient } from "../../index";
-import { gql } from "@apollo/client";
+import { getAvailablecurrencies } from "../../gql-queries";
 import "./currency-selector.styles.scss";
 
-const getAvailablecurrencies = () => {
-    const GET_AVAILABLE_CURRENCIES = gql`
-                                        query {
-                                            currencies {
-                                            label,
-                                            symbol
-                                            }
-                                        }
-                                    `;
-    return (
-        {
-            query: GET_AVAILABLE_CURRENCIES
-        }
-    )
-
-}
 
 class CurrencySelector extends React.Component {
 

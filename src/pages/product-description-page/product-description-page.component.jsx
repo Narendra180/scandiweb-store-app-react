@@ -1,48 +1,10 @@
 import React from "react";
 import withRouter from "../../hoc-components/with-router";
-import { gql } from "@apollo/client";
 import { apolloClient } from "../../index";
+import { getProductDetailsOf } from "../../gql-queries";
 import PdpProductImagesGallery from "../../components/pdp-product-images-gallery/pdp-product-images-gallery.component";
 import PdpProductDetails from "../../components/pdp-product-details/pdp-product-details.component";
 import "./product-description-page.styles.scss";
-
-
-// productId comes from params.
-const getProductDetailsOf = (productId) => {
-    const GET_PRODUCT_DETAILS = gql`
-                                    query {
-                                        product(id: "${productId}") {
-                                            id,
-                                            brand,
-                                            name,
-                                            inStock,
-                                            description,
-                                            prices {
-                                                currency {
-                                                    label,
-                                                    symbol
-                                                },
-                                                amount
-                                            },
-                                            gallery,
-                                            attributes {
-                                                name,
-                                                type,
-                                                items {
-                                                    displayValue,
-                                                    value,
-                                                    id
-                                                }
-                                            }
-                                        }
-                                    }
-                                    `;
-    return (
-        {
-            query: GET_PRODUCT_DETAILS
-        }        
-    )
-}
 
 
 class ProductDescription extends React.Component {

@@ -2,6 +2,7 @@ import React from "react";
 import OutOfStockOverlay from "../out-of-stock-overlay/out-of-stock-overlay.component";
 import "./pdp-product-images-gallery.styles.scss";
 
+
 class PdpProductImagesGallery extends React.Component {
 
     changeBigGalleryImage = (e) => {

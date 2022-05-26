@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from './components/navbar/navbar.component';
-import { gql } from '@apollo/client';
 import { apolloClient } from './index';
+import  { getCategoryNames } from "./gql-queries";
 import ProductCardsList from './pages/product-cards-list/product-cards-list.component';
 import ProductDescription from './pages/product-description-page/product-description-page.component';
 import CartPage from "./pages/cart-page/cart-page.component";
@@ -9,13 +9,6 @@ import { Routes, Route } from "react-router-dom";
 import withRouter from './hoc-components/with-router';
 import './App.css';
 
-const GET_CATEGORY_NAMES = gql`
-    query {
-        categories {
-            name
-        }
-    }
-`;
 
 class App extends React.Component {
     constructor(props) {
@@ -47,9 +40,7 @@ class App extends React.Component {
 
     getCategories = async () => {
         try {   
-            const { data: { categories } } = await apolloClient.query({
-                            query: GET_CATEGORY_NAMES
-                        });
+            const { data: { categories } } = await apolloClient.query(getCategoryNames());
 
             this.setState({
                 categories: categories,

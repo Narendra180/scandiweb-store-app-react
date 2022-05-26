@@ -1,46 +1,9 @@
 import React from "react";
-import { gql } from '@apollo/client';
 import { apolloClient } from '../../index';
+import { getProductsOf } from "../../gql-queries";
 import ProductCard from "../../components/product-card/product-card.component";
 import "./product-cards-list.styles.scss";
 
-const getProductsOf = (categoryName) => {
-    const GET_PRODUCTS_OF_CATEGORY = gql`
-                                    query {
-                                        category(input: {title: "${categoryName}"}) {
-                                            name,
-                                            products {
-                                                id,
-                                                brand,
-                                                name,
-                                                inStock,
-                                                prices {
-                                                    currency {
-                                                        label,
-                                                        symbol
-                                                    },
-                                                    amount
-                                                },
-                                                gallery,
-                                                attributes {
-                                                    name,
-                                                    type,
-                                                    items {
-                                                        displayValue,
-                                                        value,
-                                                        id
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    `;
-    return (
-        {
-            query: GET_PRODUCTS_OF_CATEGORY
-        }        
-    )
-}
 
 class ProductCardsList extends React.Component {
     constructor(props) {
