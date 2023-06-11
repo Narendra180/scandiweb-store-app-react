@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/scandiweb-store-app-react/static/css/main.ef50a1d0.css",
+    "main.css": "/scandiweb-store-app-react/static/css/main.5df71515.css",
     "main.js": "/scandiweb-store-app-react/static/js/main.fe98c0fb.js",
     "static/js/787.a92fe09e.chunk.js": "/scandiweb-store-app-react/static/js/787.a92fe09e.chunk.js",
     "static/media/store-logo.svg": "/scandiweb-store-app-react/static/media/store-logo.70d7f9e5edaf987e506ff32784cf5cf3.svg",
@@ -11,12 +11,12 @@
     "static/media/caret-left.svg": "/scandiweb-store-app-react/static/media/caret-left.094650e36d34652232c9374dc5998a78.svg",
     "static/media/caret-right.svg": "/scandiweb-store-app-react/static/media/caret-right.5b16a163dbbafd844b2aaa8f68009b3a.svg",
     "static/media/caron-symbol.svg": "/scandiweb-store-app-react/static/media/caron-symbol.766d7b11f183f77a1e40c47ea18dd7ee.svg",
-    "main.ef50a1d0.css.map": "/scandiweb-store-app-react/static/css/main.ef50a1d0.css.map",
+    "main.5df71515.css.map": "/scandiweb-store-app-react/static/css/main.5df71515.css.map",
     "main.fe98c0fb.js.map": "/scandiweb-store-app-react/static/js/main.fe98c0fb.js.map",
     "787.a92fe09e.chunk.js.map": "/scandiweb-store-app-react/static/js/787.a92fe09e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ef50a1d0.css",
+    "static/css/main.5df71515.css",
     "static/js/main.fe98c0fb.js"
   ]
 }
